@@ -30,3 +30,6 @@ exports.getWikiArticleLinks = (articleUrl, responseObject)=>{ //TODO: response o
 exports.getLinkTree = () =>{
     return {rootName='', children:[]};
 };
+// TODO: Create a function for getting articles
+// TODO: Create a function for getting Article title
+// TODO: Create a function which determines if winning condition has been reached
