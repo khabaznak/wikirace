@@ -10,8 +10,9 @@ const HOST = '0.0.0.0';
 // App
 const app = express();
 app.get('/', (req, res) => {
-    var x = wikiRacer.getWikiArticleLinks('https://en.wikipedia.org/wiki/Tesla',res);
+    //var x = wikiRacer.getWikiArticleLinks('https://en.wikipedia.org/wiki/Tesla',res);
+    var y = wikiRacer.getWikiArticleLinks('https://en.wikipedia.org/wiki/Elon_Musk',res);
 });
 
 app.listen(PORT, HOST);
-console.log(`Running on http://${HOST}:${PORT}`);
+console.log(`Wiki Racer service is running on http://${HOST}:${PORT}`);
