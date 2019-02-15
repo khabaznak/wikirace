@@ -11,7 +11,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends git && \
     apt-get clean && \
     apt-get install -y sudo && \
-    apt-get install -y npm
+    apt-get install -y npm 
 
 
 # set working directory
@@ -22,9 +22,9 @@ WORKDIR /home/${user}/${project}
 ENV PATH /home/${user}/${project}/node_modules/.bin:$PATH
 
 #COPY package.json /home/${user}/${project}/package.json
-#RUN npm init -y
 #RUN npm install --silent
 
+# RUN npm init -y
 # install express.js
 RUN npm install express --save
 

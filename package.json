@@ -1,0 +1,21 @@
+{
+  "name": "wikirace",
+  "version": "0.0.0",
+  "description": "it is a wiki racer",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/khabaznak/wikirace.git"
+  },
+  "author": "Alex Gomez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/khabaznak/wikirace/issues"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
