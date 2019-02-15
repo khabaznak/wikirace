@@ -8,7 +8,7 @@ exports.getWikiArticleLinks = (articleUrl, responseObject)=>{ //TODO: response o
             var article = HTMLParser.parse(response.data);
             var links = article.querySelectorAll('a') //TODO: Need to make sure you're only getting the links from body and avoiding the sidebar and footer.
                                 .map((l)=>{return l.rawAttrs;})
-                                .filter((l) => {return l.includes('https');})
+                                .filter((l) => {return l.includes('https');}) //TODO: should also filter out any link which goes outside wikipedia
                                 .map((l) => { 
                                     return l.split(' ')
                                             .filter(s=>{return s.includes('https');})[0];
