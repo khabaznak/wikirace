@@ -10,7 +10,7 @@ const HOST = '0.0.0.0';
 // App
 const app = express();
 app.get('/', (req, res) => {
-    var x = wikiRacer.getWikiArticle(res);
+    var x = wikiRacer.getWikiArticleLinks('https://en.wikipedia.org/wiki/Tesla',res);
 });
 
 app.listen(PORT, HOST);

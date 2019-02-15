@@ -2,8 +2,8 @@
 const axios = require('axios');
 const HTMLParser = require('node-html-parser');
 
-exports.getWikiArticle = (articleUrl, responseObject)=>{
-    axios.get('https://en.wikipedia.org/wiki/Tesla')
+exports.getWikiArticleLinks = (articleUrl, responseObject)=>{
+    axios.get(articleUrl)
     .then(response => {
             var article = HTMLParser.parse(response.data);
             var links = article.querySelectorAll('a')
