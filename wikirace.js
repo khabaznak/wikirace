@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const wikiRacer = require('./wiki-functions');
 
 // Constants
 const PORT = 8080;
@@ -9,7 +10,7 @@ const HOST = '0.0.0.0';
 // App
 const app = express();
 app.get('/', (req, res) => {
-  res.send('Welcome to wiki racing!\n');
+    var x = wikiRacer.getWikiArticle(res);
 });
 
 app.listen(PORT, HOST);
