@@ -2,7 +2,7 @@
 const axios = require('axios');
 const HTMLParser = require('node-html-parser');
 
-exports.getWikiArticle = (responseObject)=>{
+exports.getWikiArticle = (articleUrl, responseObject)=>{
     axios.get('https://en.wikipedia.org/wiki/Tesla')
     .then(response => {
             var article = HTMLParser.parse(response.data);
