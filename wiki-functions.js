@@ -12,7 +12,11 @@ exports.getWikiArticle = (responseObject)=>{
                                 .map((l) => { 
                                     return l.split(' ')
                                             .filter(s=>{return s.includes('https');})[0];
-                                    });
+                                    })
+                                .map((l) => {
+                                    return l.replace('href="','')
+                                            .replace('"','');
+                                });
             console.log(links);
             
             responseObject.send(links);
