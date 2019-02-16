@@ -30,7 +30,7 @@ class LinkTreeNode {
             } else {
                 hopCount++;
                 root.children.forEach(child => {
-                    child.expand();
+                    await child.expand();
                     queue.push(child);
                 });
             }
@@ -38,7 +38,7 @@ class LinkTreeNode {
     }
 
     /**Expands this node and finds all children links  */
-    expand( callback ) {
+    async expand( callback ) {
         let me = this;
         wikiRacer.getParsedWikiArticle(this.url, (art) => {
                                             me.title = wikiRacer.getWikiArticleTitle(art);
