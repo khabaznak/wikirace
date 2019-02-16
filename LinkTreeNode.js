@@ -17,7 +17,7 @@ class LinkTreeNode {
     }
 
     addChildNode( child ) {
-        this.children = [...this.children, child];
+        this.children.push(child);
     }
 
     static traverseBreadthFirst(compareFunction, callback, queue, hopLimit) {
@@ -38,15 +38,16 @@ class LinkTreeNode {
     }
 
     /**Expands this node and finds all children links  */
-    expand() {
+    expand( callback ) {
         let me = this;
         wikiRacer.getParsedWikiArticle(this.url, (art) => {
                                             me.title = wikiRacer.getWikiArticleTitle(art);
                                             let aLinks = wikiRacer.getWikiArticleLinks(art);
                                             aLinks.forEach(link => {
                                                 let childNode = new LinkTreeNode('',link);
-                                                this.addChildNode(childNode);
-                                            }, this);
+                                                me.addChildNode(childNode);
+                                            });
+                                            callback();
                                         });
     }
 };

@@ -54,8 +54,3 @@ exports.getParsedWikiArticle = (articleUrl, callback) => {
 exports.getWikiArticleTitle = (wikiArticle) => {
     return wikiArticle.querySelector(FIRST_HEADER_SELECTOR).text;
 };
-
-// TODO: Create a function which determines if winning condition has been reached
-exports.isRaceOver = () => {
- return false;
-};
