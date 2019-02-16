@@ -15,8 +15,11 @@ app.get('/', (req, res) => {
     let destination = new LinkTreeNode('','https://en.wikipedia.org/wiki/Elon_Musk');//TODO: obtain the url parameters from request body
     root.expand(() => {
         destination.expand(() => {
-            //LinkTreeNode.traverseBreadthFirst((destinationTitle)=>{},(resultingNode)=>{},[root],3);
-            res.send(`<h1>Yay Im ready!</h1><h2>from:${root.title}</h2><h2>to:${destination.title}</h2>`);
+            LinkTreeNode.traverseBreadthFirst((testTitle)=>{
+                return destination.title === testTitle;
+            },(resultingNode) => {
+                res.send(`<h1>Yay I finished finding </h1><h2>from: ${root.title}</h2><h2>to: ${destination.title}</h2>`);
+            },[root],3);
         });
     });
 });
