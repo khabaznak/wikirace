@@ -3,10 +3,12 @@ const axios = require('axios');
 const HTMLParser = require('node-html-parser');
 
 const FIRST_HEADER_SELECTOR = '#firstHeading';
-const WIKI_ARTICLE_MAIN_BODY_SELECTOR = 'div#bodyContent';
+const WIKI_ARTICLE_MAIN_BODY_SELECTOR = '#bodyContent';
 const WIKI_LINKS_SELECTOR = 'a';
 const HTTPS_STRING = 'https';
 const WIKIPEDIA_LINK_STRING = '/wiki/';
+const WIKTIONARY_LINK_STRING = 'wiktionary.org';
+const WIKIPEDIA_BASE_URL_STRING = 'https://en.wikipedia.org';
 const HREF_STRING = 'href="';
 const CLOSING_QUOTE_STRING = '"';
 
@@ -14,17 +16,20 @@ const CLOSING_QUOTE_STRING = '"';
  * which is passed as a parameter */
 exports.getWikiArticleLinks = (wikiArticle) => {
     let articleBody = wikiArticle.querySelector(WIKI_ARTICLE_MAIN_BODY_SELECTOR);
-    var links = articleBody.querySelectorAll(WIKI_LINKS_SELECTOR)
-                            .map((l) => {return l.rawAttrs;}) //Getting raw attributes
-                            .filter((l) => {return l.includes(HTTPS_STRING);})
+    let links = articleBody.querySelectorAll(WIKI_LINKS_SELECTOR)
+                            .map((l) => {console.log(l.rawAttrs);return l.rawAttrs;}) //Getting raw attributes
+                            .filter((l) => {return l.includes(HREF_STRING);}) //Only links
                             .map((l) => { 
-                                return l.split(' ')
-                                        .filter(s => {
-                                            return s.includes(HTTPS_STRING) && s.includes(WIKIPEDIA_LINK_STRING);
-                                        })[0];
+                                let validLink = l.split(' ')
+                                                .filter(s => {
+                                                    return s.includes(WIKIPEDIA_LINK_STRING) && !s.includes(WIKTIONARY_LINK_STRING);
+                                                })[0];
+                                console.log(`valid -> ${validLink}`);
+                                return validLink;
                             })
+                            .filter((l)=>{return l !== undefined;})
                             .map((l) => {
-                                return l.replace(HREF_STRING,'')
+                                return l.replace(HREF_STRING,WIKIPEDIA_BASE_URL_STRING)
                                 .replace(CLOSING_QUOTE_STRING,'');
                             });
     return links;
