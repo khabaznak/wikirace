@@ -17,14 +17,14 @@ const CLOSING_QUOTE_STRING = '"';
 exports.getWikiArticleLinks = (wikiArticle) => {
     let articleBody = wikiArticle.querySelector(WIKI_ARTICLE_MAIN_BODY_SELECTOR);
     let links = articleBody.querySelectorAll(WIKI_LINKS_SELECTOR)
-                            .map((l) => {console.log(l.rawAttrs);return l.rawAttrs;}) //Getting raw attributes
+                            .map((l) => {return l.rawAttrs;}) //Getting raw attributes
                             .filter((l) => {return l.includes(HREF_STRING);}) //Only links
                             .map((l) => { 
                                 let validLink = l.split(' ')
                                                 .filter(s => {
                                                     return s.includes(WIKIPEDIA_LINK_STRING) && !s.includes(WIKTIONARY_LINK_STRING);
                                                 })[0];
-                                console.log(`valid -> ${validLink}`);
+                                
                                 return validLink;
                             })
                             .filter((l)=>{return l !== undefined;})
@@ -33,12 +33,6 @@ exports.getWikiArticleLinks = (wikiArticle) => {
                                 .replace(CLOSING_QUOTE_STRING,'');
                             });
     return links;
-};
-
-function LinkTreeNode(title, id, childrenNodes) {
-    this.title = title;
-    this.id = id;
-    this.children = childrenNodes;
 };
 
 /*This function returns a parsed HTML Parser element object which represents 
