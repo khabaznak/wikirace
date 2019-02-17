@@ -15,6 +15,8 @@ const CLOSING_QUOTE_STRING = '"';
 /**Returns an Array with all the valid links from the wikiArticle object 
  * which is passed as a parameter */
 exports.getWikiArticleLinks = (wikiArticle) => {
+    if(wikiArticle === undefined) {return [];}
+
     let articleBody = wikiArticle.querySelector(WIKI_ARTICLE_MAIN_BODY_SELECTOR);
     let links = articleBody.querySelectorAll(WIKI_LINKS_SELECTOR)
                             .map((l) => {return l.rawAttrs;}) //Getting raw attributes
@@ -53,5 +55,5 @@ exports.getParsedWikiArticle = (articleUrl, callback) => {
 /**This function returns the Title of the wiki Article in plain text. 
  * the wikiArticle is an HTML Parser Element object */
 exports.getWikiArticleTitle = (wikiArticle) => {
-    return wikiArticle.querySelector(FIRST_HEADER_SELECTOR).text;
+    return wikiArticle !== undefined ? wikiArticle.querySelector(FIRST_HEADER_SELECTOR).text: '';
 };
