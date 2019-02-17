@@ -53,9 +53,9 @@ app.get('/', (req, res) => {
                     path: [{title:root.title, url:root.url}, ...foundPath, {title: destination.title, url: destination.url}]
                 };
                 console.log(payload);
-                let liPath = foundPath.map((step)=>{return `<li>${JSON.stringify(step)}</li>`;})
+                /*let liPath = foundPath.map((step)=>{return `<li>${JSON.stringify(step)}</li>`;})
                                     .reduce((acc,cur) =>{return `${acc}${cur}`;});
-
+*/
                 //res.send(`<h2>from: ${root.title}</h2><h2>to: ${destination.title}</h2><ul>${liPath}</ul> <div>${payload}</div>`);
                 res.send(payload);
             },queue,3,expanded);
