@@ -31,6 +31,7 @@ class LinkTreeNode {
 
             if(compareFunction(root.title)){
                 callback(root);
+                hopCount = hopLimit +1;
                 break;
             } else {
                 if(shiftCount >=shiftWorth[hopCount]){
@@ -81,6 +82,36 @@ class LinkTreeNode {
             console.log('Error in Expand method,', error);
             return false;
         }
+    }
+
+    getPath(targetTitle) {
+        let path =[];
+        let done = false;
+        let stack = [this];
+        let visitedStack = [];
+        
+        
+        while(!done && stack.length > 0) {
+            let currentNode = stack.pop();
+            path.push({title:currentNode.title, url:currentNode.url});
+            visitedStack.push(currentNode.title);
+
+            if(currentNode.title === targetTitle) {
+                done = true;
+            } else if(currentNode.childrenCount() === 0){
+                path.pop();
+            } else {
+                path.pop();
+                for(let i =0; i<currentNode.childrenCount();i++){
+                    if(!visitedStack.includes(currentNode.children[i].title)){
+                        stack.push(currentNode);
+                        stack.push(currentNode.children[i]);
+                    }
+                }
+            }
+        }
+
+        return path;
     }
 };
 
