@@ -1,4 +1,4 @@
-# Wiki Racer Service
+## Wiki Racer Service
 This project is a Wikipedia Racer experiment. 
 It was created using:
 * Node JS
@@ -7,11 +7,13 @@ It was created using:
 
 You'll need to have docker installed in your computer in order to run it.
 
-#Docker command for  building:
-docker build
+# Docker command for  building:
+docker build --no-cache -t wikirace .
 
 # Docker command for running:
 docker run -it --rm --name latest -p 8080:8080 -v ${PWD}/:/home/xpress/wikirace wikirace /bin/bash
+
+The ${PWD} variable used to map the volume here is different if you use docker for windows. So, please be mindful.
 
 It is worth noting that the command listed above allows you to remain inside the image so you'll still need to run the service in order to test it. 
 
