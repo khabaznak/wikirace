@@ -61,7 +61,6 @@ class LinkTreeNode {
                 console.log('Done Expanding. \nNext up is ' + queue[0].title);
             }
         }
-        console.log(`Ran out of hops? ${hopCount}`);
     }
 
     /**Expands this node and finds all children links  */

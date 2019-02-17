@@ -14,8 +14,11 @@ var expanded=[];
 // App
 const app = express();
 app.get('/', (req, res) => { 
-    let root = new LinkTreeNode('','https://en.wikipedia.org/wiki/Tesla'); 
-    let destination = new LinkTreeNode('','https://en.wikipedia.org/wiki/Nikola_Tesla');//Elon_Musk');//TODO: obtain the url parameters from request body
+    
+    let startURL = req.query.start;
+    let endURL = req.query.end;
+    let root = new LinkTreeNode('',startURL); 
+    let destination = new LinkTreeNode('',endURL);
     root.expand(() => {
         destination.expand(() => {
             queue.push(root);
@@ -53,7 +56,8 @@ app.get('/', (req, res) => {
                 let liPath = foundPath.map((step)=>{return `<li>${JSON.stringify(step)}</li>`;})
                                     .reduce((acc,cur) =>{return `${acc}${cur}`;});
 
-                res.send(`<h2>from: ${root.title}</h2><h2>to: ${destination.title}</h2><ul>${liPath}</ul> <div>${payload}</div>`);
+                //res.send(`<h2>from: ${root.title}</h2><h2>to: ${destination.title}</h2><ul>${liPath}</ul> <div>${payload}</div>`);
+                res.send(payload);
             },queue,3,expanded);
         });
     });
