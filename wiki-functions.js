@@ -42,10 +42,11 @@ exports.getParsedWikiArticle = (articleUrl, callback) => {
     return axios.get(articleUrl)
     .then((response) => {
         var article = HTMLParser.parse(response.data);
-        callback(article);
+        callback ? callback(article) : null;
+        return article;
     })
     .catch((error) => { //TODO: Please note that this catch clause might catch problems in the axios get and also parsing problems...
-        console.log(`Ooops! some weird problem occured: here your stacktrace:\n${error}`);
+        console.log(`Ooops! some weird problem occured: here is your stacktrace:\n${error}`);
     });
 };
 

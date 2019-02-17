@@ -16,8 +16,10 @@ app.get('/', (req, res) => {
     root.expand(() => {
         destination.expand(() => {
             LinkTreeNode.traverseBreadthFirst((testTitle)=>{
+                console.log(`Comparing: ${destination.title} vs ${testTitle}`);
                 return destination.title === testTitle;
             },(resultingNode) => {
+                console.log('Found Result!');
                 res.send(`<h1>Yay I finished finding </h1><h2>from: ${root.title}</h2><h2>to: ${destination.title}</h2>`);
             },[root],3);
         });
